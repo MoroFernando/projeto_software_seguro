@@ -1,6 +1,6 @@
 package main.controller;
 
-import com.amazonaws.services.cognitoidp.AWSCognitoIdentityProvider;
+import main.DAO.Conexao;
 import main.view.AuthView;
 
 public class AuthController {
