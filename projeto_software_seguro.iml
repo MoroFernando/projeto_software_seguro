@@ -16,6 +16,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="amazonaws.aws.java.sdk.cognitoidentity" level="project" />
+    <orderEntry type="library" name="amazonaws.aws.java.sdk.cognitoidp" level="project" />
   </component>
 </module>
