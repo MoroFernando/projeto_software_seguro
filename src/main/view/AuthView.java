@@ -59,7 +59,7 @@ public class AuthView {
     }
 
     public void opcaoInvalida(){
-        System.out.println("\n** Opção Inválida **");
+        System.out.println("\u001B[31m\n** Opção Inválida **\u001B[0m");
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

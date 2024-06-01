@@ -30,15 +30,15 @@ public class CognitoController {
 
         try {
             SignUpResult result = cognitoClient.signUp(signUpRequest);
-            System.out.println("Cadastro realizado com sucesso.");
+            System.out.println("\u001B[32mCadastro realizado com sucesso.\u001B[0m");
         } catch (InvalidPasswordException e) {
-            System.out.println("Erro: Senha dever cumprir os requisitos:\n- Min 8 caracteres;\n- Letra Maiúscula;\n- Letra Minúscula;\n- Caracter especial. ");
+            System.out.println("\u001B[31mErro: Senha dever cumprir os requisitos:\n- Min 8 caracteres;\n- Letra Maiúscula;\n- Letra Minúscula;\n- Caracter especial. \u001B[0m");
         } catch (UsernameExistsException e) {
-            System.out.println("Erro: Usuário já cadastrado. Efetue LOGIN para entrar");
+            System.out.println("\u001B[31mErro: Usuário já cadastrado. Efetue LOGIN para entrar\u001B[0m");
         } catch (InvalidParameterException e) {
-            System.out.println("Erro: Entradas inválidas.");
+            System.out.println("\u001B[31mErro: Entradas inválidas.\u001B[0m");
         } catch (Exception e) {
-            System.out.println("Erro: Ocorreu um erro desconhecido.");
+            System.out.println("\u001B[31mErro: Ocorreu um erro desconhecido.\u001B[0m");
         }
 
     }
@@ -57,16 +57,16 @@ public class CognitoController {
 
         try{
             InitiateAuthResult authResponse = cognitoClient.initiateAuth(authRequest);
-            System.out.println("Login efetuado com sucesso.");
+            System.out.println("\u001B[32mLogin efetuado com sucesso.\u001B[0m");
             return true;
         } catch (UserNotConfirmedException e) {
-            System.out.println("Email ainda não foi confirmado.");
+            System.out.println("\u001B[31mEmail ainda não foi confirmado.\u001B[0m");
             return false;
         } catch (NotAuthorizedException e){
-            System.out.println("Credenciais inválidas");
+            System.out.println("\u001B[31mCredenciais inválidas\u001B[0m");
             return false;
         } catch (Exception e) {
-            System.out.println("Erro inesperado. Tente novamente.");
+            System.out.println("\u001B[31mErro inesperado. Tente novamente.\u001B[0m");
             return false;
         }
     }
