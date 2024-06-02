@@ -32,6 +32,8 @@ public class ContatoDAO {
             System.out.println("\nContato adicionado com sucesso");
         } catch (MysqlDataTruncation e) {
             System.out.println("\u001B[31m\nErro: Um dos valores fornecidos é maior do que o permitido. Tente novamente.\u001B[0m");
+        } catch (NullPointerException e) {
+            System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -55,6 +57,8 @@ public class ContatoDAO {
 
             ps.close();
 
+        } catch (NullPointerException e) {
+            System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -74,6 +78,8 @@ public class ContatoDAO {
             System.out.println("Contato atualizado");
         } catch (MysqlDataTruncation e) {
             System.out.println("\u001B[31m\nErro: Um dos valores fornecidos é maior do que o permitido. Tente novamente.\u001B[0m");
+        } catch (NullPointerException e) {
+            System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -86,6 +92,8 @@ public class ContatoDAO {
             ps.setInt(1, contato.getId());
             ps.executeUpdate();
             System.out.println("Contato removido");
+        } catch (NullPointerException e) {
+            System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -109,6 +117,8 @@ public class ContatoDAO {
                 contatoEncontrado.setNumero(rs.getString("numero"));
             }
             ps.close();
+        } catch (NullPointerException e) {
+            System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -33,8 +33,9 @@ public class AuthController {
                     nome = credenciais[0];
                     email = credenciais[1];
                     senha = credenciais[2];
-                    cognitoController.SignUp(nome, email, senha);
-                    cognitoController.confirmEmail(email, authView.getCodigoConfirmacao(email));
+                    if(cognitoController.SignUp(nome, email, senha)){
+                        cognitoController.confirmEmail(email, authView.getCodigoConfirmacao(email));
+                    };
                     break;
                 case 3:
                     email = authView.getEmail();
