@@ -4,6 +4,7 @@ import com.mysql.cj.jdbc.exceptions.CommunicationsException;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Conexao {
     private static Conexao conexao;
@@ -22,10 +23,8 @@ public class Conexao {
             Class.forName("com.mysql.cj.jdbc.Driver");
             db = (Connection) DriverManager.getConnection(url, usuario, senha);
             System.out.println(db);
-        } catch (CommunicationsException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
-        } catch (Exception e){
-            e.printStackTrace();
         }
     }
 
