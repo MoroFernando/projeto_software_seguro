@@ -1,11 +1,9 @@
 package main;
 
-import main.controller.AuthController;
-import main.controller.MenuController;
+import main.controller.AppController;
 
 public class Main {
     public static void main(String[] args){
-        AuthController authController = new AuthController();
-        MenuController menu = new MenuController();
+        AppController app = new AppController();
     }
 }

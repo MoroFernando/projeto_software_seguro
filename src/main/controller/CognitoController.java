@@ -21,7 +21,7 @@ public class CognitoController {
         cognitoClient = AWSCognitoIdentityProviderClientBuilder.standard().withRegion(Regions.US_EAST_2).build();
     }
 
-    public void SignUp(String nome, String email, String senha){
+    public boolean SignUp(String nome, String email, String senha){
         System.out.println("Realizando Cadastro...");
         SignUpRequest signUpRequest = new SignUpRequest()
                 .withClientId(CLIENT_ID)
@@ -31,6 +31,7 @@ public class CognitoController {
         try {
             SignUpResult result = cognitoClient.signUp(signUpRequest);
             System.out.println("\u001B[32mCadastro realizado com sucesso.\u001B[0m");
+            return true;
         } catch (InvalidPasswordException e) {
             System.out.println("\u001B[31mErro: Senha dever cumprir os requisitos:\n- Min 8 caracteres;\n- Letra Maiúscula;\n- Letra Minúscula;\n- Caracter especial. \u001B[0m");
         } catch (UsernameExistsException e) {
@@ -40,7 +41,7 @@ public class CognitoController {
         } catch (Exception e) {
             System.out.println("\u001B[31mErro: Ocorreu um erro desconhecido.\u001B[0m");
         }
-
+        return false;
     }
 
     public boolean SignIn(String email, String senha){
