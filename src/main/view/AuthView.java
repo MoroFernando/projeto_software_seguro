@@ -1,12 +1,16 @@
 package main.view;
 
+import main.util.InputValidator;
+
 import java.util.Scanner;
 
 public class AuthView {
     private Scanner sc;
+    private InputValidator iv;
 
     public AuthView(){
         this.sc = new Scanner(System.in);
+        this.iv = new InputValidator();
     }
 
     public int opcoes(){
@@ -31,31 +35,31 @@ public class AuthView {
     public String[] getDadosLogin(){
         System.out.println("=== Login ===");
         System.out.print("Email: ");
-        String email = sc.nextLine();
+        String email = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Senha: ");
-        String senha = sc.nextLine();
+        String senha = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         return new String[]{email, senha};
     }
 
     public String[] getDadosCadastro() {
         System.out.println("=== Registro ===");
         System.out.print("Nome: ");
-        String nome = sc.nextLine();
+        String nome = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Email: ");
-        String email = sc.nextLine();
+        String email = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Senha: ");
-        String senha = sc.nextLine();
+        String senha = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         return new String[]{nome, email, senha};
     }
 
     public String getEmail(){
         System.out.print("Email: ");
-        return sc.nextLine();
+        return iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
     }
 
     public String getCodigoConfirmacao(String email){
-        System.out.print("Digite o cógido de verificação enviado para " + email + " : ");
-        return sc.nextLine();
+        System.out.print("Digite o cógido de verificação enviado para " + iv.validateString(email) + " : "); //IDS03-J. Do not log unsanitized user input
+        return iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
     }
 
     public void opcaoInvalida(){

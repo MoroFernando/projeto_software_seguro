@@ -1,15 +1,18 @@
 package main.view;
 
 import main.model.Contato;
+import main.util.InputValidator;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class MenuView {
     private Scanner sc;
+    private InputValidator iv;
 
     public MenuView(){
         this.sc = new Scanner(System.in);
+        this.iv = new InputValidator();
     }
 
     public int opcoes(){
@@ -41,6 +44,8 @@ public class MenuView {
             System.out.println("| id | nome                 | email                     | numero          |");
             System.out.println("+----+----------------------+---------------------------+-----------------+");
             for (Contato contato : contatos) {
+                // CL02-J. Do not modify the collection's elements during an enhanced for statement
+                // (Neste for apenas acesso seus valores, não modifico nenhum)
                 System.out.printf("| %-2d | %-20s | %-25s | %-15s |%n",
                         contato.getId(),
                         contato.getNome(),
@@ -64,11 +69,11 @@ public class MenuView {
         System.out.println(" ");
 
         System.out.print("Nome: ");
-        nome = sc.nextLine();
+        nome = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Email: ");
-        email = sc.nextLine();
+        email = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Número: ");
-        numero = sc.nextLine();
+        numero = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
 
         Contato novoContato = new Contato();
         novoContato.setNome(nome);
@@ -93,11 +98,11 @@ public class MenuView {
         System.out.println("+----+----------------------+---------------------------+-----------------+");
         System.out.println(" ");
         System.out.print("Novo Nome (vazio para manter o atual): ");
-        novoNome = sc.nextLine();
+        novoNome = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Novo Email (vazio para manter o atual): ");
-        novoEmail = sc.nextLine();
+        novoEmail = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
         System.out.print("Novo Número (vazio para manter o atual): ");
-        novoNumero = sc.nextLine();
+        novoNumero = iv.validateString(sc.nextLine()); // IDS01-J. Normalize strings before validating them
 
         if(!novoNome.isEmpty()) {
             contato.setNome(novoNome);
