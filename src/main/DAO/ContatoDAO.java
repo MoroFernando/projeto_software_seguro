@@ -6,6 +6,7 @@ import main.model.Contato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +33,8 @@ public class ContatoDAO {
             System.out.println("\nContato adicionado com sucesso");
         } catch (MysqlDataTruncation e) {
             System.out.println("\u001B[31m\nErro: Um dos valores fornecidos é maior do que o permitido. Tente novamente.\u001B[0m");
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | SQLException e) {
             System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -57,10 +56,8 @@ public class ContatoDAO {
 
             ps.close();
 
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | SQLException e) {
             System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return contatos;
@@ -76,12 +73,10 @@ public class ContatoDAO {
             ps.setInt(4, contato.getId());
             ps.executeUpdate();
             System.out.println("Contato atualizado");
-        } catch (MysqlDataTruncation e) {
+        } catch (SQLException e) {
             System.out.println("\u001B[31m\nErro: Um dos valores fornecidos é maior do que o permitido. Tente novamente.\u001B[0m");
         } catch (NullPointerException e) {
             System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
@@ -92,10 +87,8 @@ public class ContatoDAO {
             ps.setInt(1, contato.getId());
             ps.executeUpdate();
             System.out.println("Contato removido");
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | SQLException e) {
             System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
-        } catch (Exception e){
-            e.printStackTrace();
         }
 
     }
@@ -117,10 +110,8 @@ public class ContatoDAO {
                 contatoEncontrado.setNumero(rs.getString("numero"));
             }
             ps.close();
-        } catch (NullPointerException e) {
+        } catch (NullPointerException | SQLException e) {
             System.out.println("\u001B[31mErro ao se conectar com o banco de dados.\u001B[0m");
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return contatoEncontrado;
